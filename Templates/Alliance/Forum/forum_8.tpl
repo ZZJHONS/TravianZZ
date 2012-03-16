@@ -1,6 +1,6 @@
 <?php
 //////////////// made by TTMTT ////////////////
-
+if($session->access!=BANNED){
 $forum_data = $database->ForumCatEdit($_GET['idf']);
 foreach($forum_data as $cats) {
 	$cat_name = $cats['forum_name'];
@@ -104,3 +104,7 @@ foreach($forum_data as $cats) {
 		<td><input class="text" type="text" name="u2" value="<?php echo $cat_des; ?>" maxlength="38"></td>
 	</tr>
 </table><p class="btn"><input type="image" value="ok" name="s1" id="fbtn_ok" class="dynamic_img" src="img/x.gif" alt="OK" /></form></p>
+<?php }else{
+header("Location: banned.php");
+}
+?>

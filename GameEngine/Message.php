@@ -43,7 +43,14 @@
                         $this->sendAMessage($post['an'],$post['be'],$post['message']);
                         }else{
                         $this->sendMessage($post['an'],$post['be'],$post['message']);
-                        }header("Location: nachrichten.php?t=2");
+                        }
+						if($post['an'] == strtolower("Multihunter")){
+						header("Location: nachrichten.php?t=2");
+						}else if($session->access != BANNED){
+						header("Location: nachrichten.php?t=2");
+						}else{
+						header("Location: banned.php");
+						}
         					break;
         				case "m3":
         				case "m4":
@@ -79,8 +86,11 @@
         			}
         			if($get['t'] == 5) {
 						if(!$session->plus){
+						if($session->access != BANNED){
 							header("Location: berichte.php");
 						} else {
+							header("Location: banned.php");
+						}} else {
 							$type = 9;
 						}
         			}
@@ -108,7 +118,11 @@
         		foreach($this->inbox as $message) {
         			if($message['id'] == $id) {
         				$this->reply = $_SESSION['reply'] = $message;
-        				header("Location: nachrichten.php?t=1&id=" . $message['owner']);
+						if($session->access != BANNED){
+							header("Location: nachrichten.php?t=1&id=" . $message['owner']);
+						} else {
+							header("Location: banned.php");
+						}
         			}
         		}
         	}
@@ -185,7 +199,11 @@
         				$database->getMessage($post['n' . $i], 5);
         			}
         		}
-        		header("Location: nachrichten.php");
+						if($session->access != BANNED){
+							header("Location: nachrichten.php");
+						} else {
+							header("Location: banned.php");
+						}
         	}
 
         	private function archiveMessage($post) {
@@ -195,7 +213,11 @@
         				$database->setArchived($post['n' . $i]);
         			}
         		}
-        		header("Location: nachrichten.php");
+						if($session->access != BANNED){
+							header("Location: nachrichten.php");
+						} else {
+							header("Location: banned.php");
+						}
         	}
 
         	private function unarchiveMessage($post) {
@@ -205,7 +227,11 @@
         				$database->setNorm($post['n' . $i]);
         			}
         		}
-        		header("Location: nachrichten.php");
+						if($session->access != BANNED){
+							header("Location: nachrichten.php");
+						} else {
+							header("Location: banned.php");
+						}
         	}
 
         	private function removeNotice($post) {
@@ -215,7 +241,11 @@
         				$database->removeNotice($post['n' . $i], 5);
         			}
         		}
-        		header("Location: berichte.php");
+						if($session->access != BANNED){
+							header("Location: berichte.php");
+						} else {
+							header("Location: banned.php");
+						}
         	}
 
         	private function archiveNotice($post) {
@@ -225,7 +255,11 @@
         				$database->archiveNotice($post['n' . $i]);
         			}
         		}
-        		header("Location: berichte.php");
+						if($session->access != BANNED){
+							header("Location: berichte.php");
+						} else {
+							header("Location: banned.php");
+						}
         	}
 
         	private function unarchiveNotice($post) {
@@ -235,7 +269,12 @@
         				$database->unarchiveNotice($post['n' . $i]);
         			}
         		}
-        		header("Location: berichte.php");
+				
+						if($session->access != BANNED){
+							header("Location: berichte.php");
+						} else {
+							header("Location: banned.php");
+						}
         	}
 
         	private function getReadNotice($id) {

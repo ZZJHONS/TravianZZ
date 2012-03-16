@@ -37,6 +37,7 @@ $aantal = count($database->getMovement(3,$village->wid,1));
 $aantal2 = $database->getMovement(3,$village->wid,1);
 for($i=0;$i<$aantal;$i++){
 	if($aantal2[$i]['attack_type'] == 2) { $aantal -= 1; }
+	if($aantal2[$i]['attack_type'] == 1) { $aantal -= 1; }
 }
 if($aantal > 0){
 	if(!empty($NextArrival)) { reset($NextArrival); }

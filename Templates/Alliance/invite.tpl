@@ -9,6 +9,7 @@ $allianceinfo = $database->getAlliance($aid);
 $allianceInvitations = $database->getAliInvitations($aid);
 echo "<h1>".$allianceinfo['tag']." - ".$allianceinfo['name']."</h1>";
 include("alli_menu.tpl"); 
+if($session->access!=BANNED){
 ?>
 
 <table cellpadding="1" cellspacing="1" id="invite" class="small_option"><thead>
@@ -53,3 +54,8 @@ if (count($allianceInvitations) == 0) {
 ?>
 </tbody>
 </table>
+<?php
+}else{
+	header("Location: banned.php");
+}
+?>

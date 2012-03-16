@@ -93,7 +93,7 @@ Reply:
 			</script>
 					<p class="btn">
 		<input type="hidden" name="ft" value="m2" />
-		<input type="image" value="" name="s1" id="btn_send" class="dynamic_img" src="img/x.gif" alt="send" tabindex=4; />			
+		<input type="image" value="" name="s1" id="btn_send" class="dynamic_img" src="img/x.gif" alt="send" onclick="this.disabled=true;this.form.submit();" tabindex=4; />			
 	</p>
 	</form>
 	<div id="adressbook" class="hide"><h2>Addressbook</h2>

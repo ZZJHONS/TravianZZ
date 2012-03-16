@@ -72,6 +72,9 @@ $id = "";
 if ($id == "") {
 include("Templates/Plus/1.tpl");
 }
+if ($id == 1) {
+include("Templates/Plus/3.tpl");
+}
 if ($id == 2) {
 include("Templates/Plus/2.tpl");
 }
@@ -107,6 +110,9 @@ include("Templates/Plus/13.tpl");
 }
 if ($id == 14) {
 include("Templates/Plus/14.tpl");
+}
+if ($id > 14) {
+include("Templates/Plus/3.tpl");
 }
 ?>
 

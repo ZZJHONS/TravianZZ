@@ -1,4 +1,7 @@
 <!-- //////////////// made by TTMTT //////////////// -->
+<?php
+if($session->access!=BANNED){
+?>
 <form method="post" name="post" action="allianz.php?s=2&fid=<?php echo $_GET['fid']; ?>&pid=<?php echo $_GET['pid']; ?>">
 	<input type="hidden" name="newtopic" value="1">
 	<input type="hidden" name="pid" value="<?php echo $_GET['pid']; ?>">
@@ -119,3 +122,7 @@
 
 
 <p class="btn"><input type="image" id="fbtn_ok" value="ok" name="s1" class="dynamic_img" src="img/x.gif" alt="OK" /></form></p>
+<?php }else{
+header("Location: banned.php");
+}
+?>

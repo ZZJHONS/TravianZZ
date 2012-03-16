@@ -47,6 +47,8 @@ foreach ($database->getJobs($_SESSION['wid']) as $bdata) {
     $UnderConstruction = strtolower(str_replace(array(" ","'"),"",$building->procResType($bdata['type'])));
     $$UnderConstruction = ($$UnderConstruction == 0 ? -1 : $$UnderConstruction);
 }
+
+
 ?>
 <div id="build" class="gid0"><h1>Construct new building</h1>
 <?php
@@ -86,7 +88,7 @@ if($mainbuilding >= 10 && $village->capital == 0 && $largeA['owner'] == $session
     include("avaliable/greatgranary.tpl");
 }  
 if(($trapper ==0 || $trapper == 10) && $rallypoint >= 1 && $session->tribe == 3 && $id != 39 && $id != 40) {
-//include("avaliable/trapper.tpl");
+include("avaliable/trapper.tpl");
 }
 if($rallypoint == 0 && $id != 40) {
 include("avaliable/rallypoint.tpl");
@@ -94,10 +96,12 @@ include("avaliable/rallypoint.tpl");
 if($embassy == 0 && $id != 39 && $id != 40) {
 include("avaliable/embassy.tpl");
 }
-if($hero == 0 && $mainbuilding >= 3 && $rallypoint >= 1 && $id != 39  && $id != 40) {
+//fix hero
+if($hero == 0 && $mainbuilding >= 3 && $rallypoint >= 1 && $$UnderConstruction <> -1 && $id != 39  && $id != 40) {
 include("avaliable/hero.tpl");
 }
-if($rallypoint >= 1 && $mainbuilding >= 3 && $barrack == 0 && $id != 39 && $id != 40) {
+//fix barracks
+if($rallypoint >= 1 && $mainbuilding >= 3 && $barrack == 0 && $$UnderConstruction <> -1 && $id != 39 && $id != 40) {
 include("avaliable/barracks.tpl");
 }
 if($mainbuilding >= 3 && $academy >= 1 && $armoury == 0 && $id != 39 && $id != 40) {
@@ -106,16 +110,19 @@ include("avaliable/armoury.tpl");
 if($cropland >= 5 && $grainmill == 0 && $id != 39 && $id != 40) {
 include("avaliable/grainmill.tpl");
 }
-if($granary >= 1 && $warehouse >= 1 && $mainbuilding >= 3 && $market == 0 && $id != 39 && $id != 40) {
+//fix marketplace
+if($granary >= 1 && $warehouse >= 1 && $mainbuilding >= 3 && $market == 0 && $$UnderConstruction <> -1 && $id != 39 && $id != 40) {
 include("avaliable/marketplace.tpl");
 }
-if($mainbuilding >= 5 && $residence == 0  && $id != 39 && $id != 40 && $palace == 0) {
+//fix residence
+if($mainbuilding >= 5 && $residence == 0  && $$UnderConstruction <> -1 && $id != 39 && $id != 40 && $palace == 0) {
 include("avaliable/residence.tpl");
 }
 if($academy == 0 && $mainbuilding >= 3 && $barrack >= 3 && $id != 39 && $id != 40) {
 include("avaliable/academy.tpl");
 }
-if($palace == 0 && $embassy >= 1 && $mainbuilding >= 5 && $id != 39 && $id != 40 && $residence == 0) {
+//fix palace
+if($palace == 0 && $embassy >= 1 && $mainbuilding >= 5 && $$UnderConstruction <> -1 && $id != 39 && $id != 40 && $residence == 0) {
 include("avaliable/palace.tpl");
 }
 if($blacksmith == 0 && $academy >= 3 && $mainbuilding >= 3 && $id != 39 && $id != 40) {
@@ -176,7 +183,7 @@ if($id != 39 && $id != 40) {
 <div id="build_list_soon" class="hide">
 <?php
 if($rallypoint == 0 && $session->tribe == 3 && $trapper == 0 ) {
-//include("soon/trapper.tpl");
+include("soon/trapper.tpl");
 }
 if($mainbuilding < 10 && $village->capital == 0 && $largeA['owner'] == $session->uid || $normalA['vref'] == $village->wid ) {
     include("soon/greatwarehouse.tpl");

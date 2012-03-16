@@ -10,7 +10,7 @@
 ##                                                                             ##
 #################################################################################
 
-
+ob_start();
 include("GameEngine/Village.php");
 $start = $generator->pageLoadTimeStart();
 $profile->procProfile($_POST);
@@ -127,7 +127,11 @@ else if (isset($_GET['s'])) {
 		include("Templates/Profile/profile.tpl");
 	}
 	if($_GET['s'] == 2) {
+	if($session->access!=BANNED){
 		include("Templates/Profile/preference.tpl");
+	}else{
+	header("Location: banned.php");
+	}
 	}
 	if($_GET['s'] == 3) {
 		include("Templates/Profile/account.tpl");

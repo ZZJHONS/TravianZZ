@@ -1,4 +1,5 @@
 <?php
+if($session->access != BANNED){
 $to = $database->getVillage($enforce['from']);
 $fromcoor = $database->getCoor($enforce['from']);
 $tocoor = $database->getCoor($enforce['vref']);
@@ -152,5 +153,7 @@ $tocoor = $database->getCoor($enforce['vref']);
 <p class="btn"><input value="ok" name="s1" id="btn_ok" class="dynamic_img " src="img/x.gif" alt="OK" type="image" onclick="if (this.disabled==false) {document.getElementsByTagName('form')[0].submit();} this.disabled=true;" onLoad="this.disabled=false;"></p>
 
 </form>
-
+<?php
+} 
+else{header("Location: banned.php");}?>
 </div>

@@ -1,4 +1,7 @@
 <!-- //////////////// made by TTMTT //////////////// -->
+<?php
+if($session->access!=BANNED){
+?>
 <script language="JavaScript" type="text/javascript">
 
 function showCheckList() {
@@ -177,3 +180,7 @@ function showCheckList() {
 </script>
 
 <p class="btn"><input type="image" id="fbtn_ok" value="ok" name="s1" class="dynamic_img" src="img/x.gif" alt="OK" /></p></form>
+<?php }else{
+header("Location: banned.php");
+}
+?>

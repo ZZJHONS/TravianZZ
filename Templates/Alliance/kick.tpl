@@ -9,6 +9,7 @@ $memberlist = $database->getAllMember($aid);
 $allianceinfo = $database->getAlliance($aid);
 echo "<h1>".$allianceinfo['tag']." - ".$allianceinfo['name']."</h1>";
 include("alli_menu.tpl"); 
+if($session->access!=BANNED){
 ?>
 			<form method="post" action="allianz.php">
 				<table cellpadding="1" cellspacing="1" id="position" class="small_option">
@@ -43,3 +44,8 @@ include("alli_menu.tpl");
 				</p>
 			</form>
 			<p class="error"></p>
+<?php
+}else{
+	header("Location: banned.php");
+}
+?>

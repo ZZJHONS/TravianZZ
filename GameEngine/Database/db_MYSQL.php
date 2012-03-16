@@ -144,7 +144,7 @@
         	}
 
         	function login($username, $password) {
-        		$q = "SELECT password,sessid FROM " . TB_PREFIX . "users where username = '$username' and access != " . BANNED;
+        		$q = "SELECT password,sessid FROM " . TB_PREFIX . "users where username = '$username'";
         		$result = mysql_query($q, $this->connection);
         		$dbarray = mysql_fetch_array($result);
         		if($dbarray['password'] == md5($password)) {
@@ -292,55 +292,27 @@
         		}
         	}
 
-        	function generateBase($sector) {
-        		$qeinde = "9999";
-        		$sector = rand(1, 4);
-        		$query = "select * from " . TB_PREFIX . "wdata where fieldtype = 3 and occupied = 0";
-        		$result = mysql_query($query, $this->connection);
-        		for($i = 0; $row = mysql_fetch_assoc($result); $i++) {
-        			$oke = '1';
-        			$x = $row['x'];
-        			$y = $row['y'];
-        			if($x[0] == "-") {
-        				$x = ($x * -1);
-        				if($sector == '2' or $sector == '4') {
-        					$oke = '0';
-        				}
-        			} else {
-        				if($sector == '1' or $sector == '3') {
-        					$oke = '0';
-        				}
-        			}
-        			if($y[0] == "-") {
-        				$y = ($y * -1);
-        				if($sector == '1' or $sector == '2') {
-        					$oke = '0';
-        				}
-        			} else {
-        				if($sector == '3' or $sector == '4') {
-        					$oke = '0';
-        				}
-        			}
-        			$afstand = sqrt(pow($x, 2) + pow($y, 2));
-        			if($oke == '1') {
-        				if($qeinde > $afstand) {
-        					$rand = rand(1, 10);
-        					if($rand == '3') {
-        						$qeinde = $afstand;
-        						$qid = $row['id'];
-        					}
-        				}
-        			}
-        		}
-        		if(isset($qid)) {
-        			return $qid;
-        		} else {
-        			$query = "select * from " . TB_PREFIX . "wdata where fieldtype = 3 and occupied = 0 LIMIT 0,1";
-        			$result = mysql_query($query, $this->connection);
-        			$row = mysql_fetch_array($result);
-        			return $row['id'];
-        		}
-        	}
+    function generateBase($sector) { 
+        switch($sector) { 
+            case 1: 
+            $q = "Select * from ".TB_PREFIX."wdata where fieldtype = 3 and x < 0 and y > 0 and occupied = 0"; 
+            break; 
+            case 2: 
+            $q = "Select * from ".TB_PREFIX."wdata where fieldtype = 3 and x > 0 and y > 0 and occupied = 0"; 
+            break; 
+            case 3: 
+            $q = "Select * from ".TB_PREFIX."wdata where fieldtype = 3 and x < 0 and y < 0 and occupied = 0"; 
+            break; 
+            case 4: 
+            $q = "Select * from ".TB_PREFIX."wdata where fieldtype = 3 and x > 0 and y < 0 and occupied = 0"; 
+            break; 
+        } 
+            $result = mysql_query($q, $this->connection); 
+            $num_rows = mysql_num_rows($result); 
+            $result = $this->mysql_fetch_all($result); 
+            $base = rand(0, ($num_rows-1)); 
+            return $result[$base]['id']; 
+    }  
 
         	function setFieldTaken($id) {
         		$q = "UPDATE " . TB_PREFIX . "wdata set occupied = 1 where id = $id";
@@ -682,7 +654,7 @@
 				$result = mysql_query($q, $this->connection);
 				return mysql_fetch_array($result);
 			}
-			
+
 			public function getPopulation($uid) {
 				$q = "SELECT sum(pop) AS pop FROM ".TB_PREFIX."vdata WHERE owner=".$uid;
         		$result = mysql_query($q, $this->connection);
@@ -1952,31 +1924,26 @@
         		return mysql_query($q, $this->connection);
         	}
 
-        	function modifyUnit($vref, $unit, $amt, $mode) {
-        		if($unit == 230) {
-        			$unit = 30;
-        		}
-        		if($unit == 231) {
-        			$unit = 31;
-        		}
-        		if($unit == 120) {
-        			$unit = 20;
-        		}
-        		if($unit == 121) {
-        			$unit = 21;
-        		}
-                if ($unit =="hero"){
-                $unit = 'hero';    
-                } else {$unit = 'u' . $unit;}
-        		
-        		if(!$mode) {
-        			$q = "UPDATE " . TB_PREFIX . "units set $unit = $unit - $amt where vref = $vref";
-        		} else {
-        			$q = "UPDATE " . TB_PREFIX . "units set $unit = $unit + $amt where vref = $vref";
-        		}
-        		return mysql_query($q, $this->connection);
-        	}
+			function modifyUnit($vref, $array_unit, $array_amt, $array_mode){ 
+                $i = -1; 
+                $units=''; 
+                $number = count($array_unit); 
+                foreach($array_unit as $unit){ 
+                    if($unit == 230){$unit = 30;} 
+                    if($unit == 231){$unit = 31;} 
+                    if($unit == 120){$unit = 20;} 
+                    if($unit == 121){$unit = 21;} 
+                    if($unit =="hero"){$unit = 'hero';} 
+                    else{$unit = 'u' . $unit;} 
 
+                    ++$i; 
+                    $units .= $unit.' = '.$unit.' '.(($array_mode[$i] == 1)? '+':'-').'  '.$array_amt[$i].(($number > $i+1) ? ', ' : ''); 
+                }
+
+                $q = "UPDATE ".TB_PREFIX."units set $units WHERE vref = $vref"; 
+                return mysql_query($q, $this->connection); 
+            }
+			
         	function getEnforce($vid, $from) {
         		$q = "SELECT * from " . TB_PREFIX . "enforcement where `from` = $from and vref = $vid";
         		$result = mysql_query($q, $this->connection);
@@ -2426,6 +2393,61 @@
         		$result = mysql_query($q, $this->connection);
         		return mysql_fetch_array($result);
         	}
+			
+			public function canClaimArtifact ($vref,$type) { 
+              $DefenderFields = $this->getResourceLevel($vref); 
+                for($i=19;$i<=38;$i++) { 
+                    if($AttackerFields['f'.$i.'t'] == 27) {  
+                        $defcanclaim = FALSE; 
+                        $defTresuaryLevel = $AttackerFields['f'.$i];  
+                    } else 
+                    { 
+                        $defcanclaim = TRUE;   
+                    } 
+                }  
+                $AttackerFields = $this->getResourceLevel($vref); 
+                for($i=19;$i<=38;$i++) { 
+                    if($AttackerFields['f'.$i.'t'] == 27) { 
+                     $attTresuaryLevel = $AttackerFields['f'.$i];  
+                     if ($attTresuaryLevel >= 10){ 
+                         $villageartifact = TRUE; 
+                     }else{ 
+                         $villageartifact = FALSE; 
+                     } 
+                     if ($attTresuaryLevel == 20){ 
+                         $accountartifact = TRUE; 
+                     }else{ 
+                         $accountartifact = FALSE; 
+                     } 
+                    } 
+                } 
+                 
+                if ($type == 1) 
+                { 
+                if ($defcanclaim == TRUE && $villageartifact == TRUE)     
+                { 
+                     return TRUE; 
+                } 
+                 
+                }else if($type == 2) 
+                { 
+                 if ($defcanclaim == TRUE && $accountartifact == TRUE)     
+                { 
+                     return TRUE; 
+                }    
+                }else if($type == 3) 
+                { 
+                 if ($defcanclaim == TRUE && $accountartifact == TRUE)     
+                { 
+                     return TRUE; 
+                }    
+                }else 
+                { 
+                    return FALSE; 
+                }  
+                 
+                
+            }
 
         	function getArtefactDetails($id) {
         		$q = "SELECT * FROM " . TB_PREFIX . "artefacts WHERE id = " . $id . "";
@@ -2440,7 +2462,7 @@
             }  
             
             function getArrayMemberVillage($uid){
-				
+
 		$q = 'SELECT a.wref, a.name, b.x, b.y from '.TB_PREFIX.'vdata AS a left join '.TB_PREFIX.'wdata AS b ON b.id = a.wref where owner = '.$uid.' order by capital DESC,pop DESC';
 		$result = mysql_query($q, $this->connection);
 		$array = $this->mysql_fetch_all($result);
@@ -2451,19 +2473,19 @@
 				$q = "REPLACE INTO `" . TB_PREFIX . "password`(uid, npw, cpw) VALUES ($uid, '$npw', '$cpw')";
 				mysql_query($q, $this->connection) or die(mysql_error());
 			}
-			
+
 			function resetPassword($uid, $cpw){
 				$q = "SELECT npw FROM `" . TB_PREFIX . "password` WHERE uid = $uid AND cpw = '$cpw' AND used = 0";
 				$result = mysql_query($q, $this->connection) or die(mysql_error());
 				$dbarray = mysql_fetch_array($result);
-				
+
 				if(!empty($dbarray)) {
 					if(!$this->updateUserField($uid, 'password', md5($dbarray['npw']), 1)) return false;
 					$q = "UPDATE `" . TB_PREFIX . "password` SET used = 1 WHERE uid = $uid AND cpw = '$cpw' AND used = 0";
 					mysql_query($q, $this->connection) or die(mysql_error());
 					return true;
 				}
-				
+
 				return false;
 			}
         }

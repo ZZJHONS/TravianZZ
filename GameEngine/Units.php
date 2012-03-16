@@ -139,6 +139,13 @@ class Units {
 								$form->addError("error","Player is Banned. You can't attack him");
 								//break;
 					}
+				//check if admin:
+				$villageOwner = $database->getVillageField($id,'owner');
+				$userAccess = $database->getUserField($villageOwner,'access',0);
+					if($userAccess == '9'){
+								$form->addError("error","Player is Admin. You can't attack him");
+								//break;
+					}
 					
 				//check if attacking same village that units are in
 					if($id == $village->wid){
@@ -225,17 +232,12 @@ class Units {
 		 if($session->tribe == 1){ $u = ""; } elseif($session->tribe == 2){ $u = "1"; } elseif($session->tribe == 3){ $u = "2"; }elseif($session->tribe == 4){ $u = "3"; }else {$u = "4"; }
 				
 		
-		$database->modifyUnit($village->wid,$u."1",$data['u1'],0);
-		$database->modifyUnit($village->wid,$u."2",$data['u2'],0);
-		$database->modifyUnit($village->wid,$u."3",$data['u3'],0);
-		$database->modifyUnit($village->wid,$u."4",$data['u4'],0);
-		$database->modifyUnit($village->wid,$u."5",$data['u5'],0);
-		$database->modifyUnit($village->wid,$u."6",$data['u6'],0);
-		$database->modifyUnit($village->wid,$u."7",$data['u7'],0);
-		$database->modifyUnit($village->wid,$u."8",$data['u8'],0);
-		$database->modifyUnit($village->wid,$u."9",$data['u9'],0);
-		$database->modifyUnit($village->wid,$u.$session->tribe."0",$data['u10'],0);
-		$database->modifyUnit($village->wid,"hero",$data['u11'],0);
+            $database->modifyUnit( 
+                $village->wid, 
+                array($u."1",$u."2",$u."3",$u."4",$u."5",$u."6",$u."7",$u."8",$u."9",$u.$session->tribe."0","hero"), 
+                array($data['u1'],$data['u2'],$data['u3'],$data['u4'],$data['u5'],$data['u6'],$data['u7'],$data['u8'],$data['u9'],$data['u10'],$data['u11']), 
+                array(0,0,0,0,0,0,0,0,0,0,0) 
+            );
 		
     $query1 = mysql_query('SELECT * FROM `' . TB_PREFIX . 'vdata` WHERE `wref` = ' . mysql_escape_string($data['to_vid']));
     $data1 = mysql_fetch_assoc($query1);
@@ -389,7 +391,7 @@ class Units {
      $unit = ($session->tribe*10);
       
 		  $database->modifyResource($village->wid,750,750,750,750,0);
-		  $database->modifyUnit($village->wid,$unit,3,0);
+		  $database->modifyUnit($village->wid,array($unit),array(3),array(0));
 		  $database->addMovement(5,$village->wid,$post['s'],0,$post['timestamp']);
 		  header("Location: build.php?id=39");
 		

@@ -68,7 +68,7 @@ if(!isset($_REQUEST['npw'])){
 			// generate password and cpw
 			$npw = $generator->generateRandStr(7);
 			$cpw = $generator->generateRandStr(10);
-			
+
 			$database->addPassword($uid, $npw, $cpw);
 
 			// send password mail
@@ -81,14 +81,14 @@ if(!isset($_REQUEST['npw'])){
 	}else if(isset($_GET['cpw']) && isset($_GET['npw'])){
 		$uid = intval($_GET['npw']);
 		$cpw = preg_replace('#[^a-zA-Z0-9]#', '', $_GET['cpw']);
-		
+
 		if(!$database->resetPassword($uid, $cpw)){
 			echo '<p>The password has not been changed. Perhaps the activation code has already been used.</p>';
 		}else{
 			echo '<p>The password has been successfully changed.</p>';
 		}
 
-	
+
 	// user click 'generate password' link in login fail page, display input form here
 	}else {
 

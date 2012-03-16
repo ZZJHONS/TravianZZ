@@ -1,6 +1,6 @@
 <?php
 //////////////     made by alq0rsan   /////////////////////////
-
+if($session->access != BANNED){
     $MyGold = mysql_query("SELECT * FROM ".TB_PREFIX."users WHERE `username`='".$session->username."'") or die(mysql_error());
     $golds = mysql_fetch_array($MyGold);
 
@@ -51,5 +51,7 @@ echo $done1;
 print "<BR>";
 
 include("Templates/Plus/3.tpl");
-
+}else{
+header("Location: banned.php");
+}
  ?>

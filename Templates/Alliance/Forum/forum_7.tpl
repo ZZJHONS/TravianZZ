@@ -1,6 +1,6 @@
 <?php
 //////////////// made by TTMTT ////////////////
-
+if($session->access!=BANNED){
 $tid = $_GET['tid'];
 $topics = $database->ShowTopic($tid);
 foreach($topics as $arr) {
@@ -69,3 +69,7 @@ foreach($topics as $arr) {
 	</tbody></table>
 
 <p class="btn"><input type="image" id="fbtn_ok" value="ok" name="s1" class="dynamic_img" src="img/x.gif" alt="OK" /></form></p>
+<?php }else{
+header("Location: banned.php");
+}
+?>

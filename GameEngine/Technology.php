@@ -137,12 +137,6 @@ class Technology {
 	
 	public function getUnitList() {
 		global $database,$village;
-		$unitcheck = $database->getUnit($village->wid);
-		for($i=1;$i<=50;$i++) {
-			if($unitcheck['u'.$i] >= "4000000") {
-				mysql_query("UPDATE ".TB_PREFIX."units set u".$i." = '0' where vref = $village->wid");
-			}
-		}
 		$unitarray = func_num_args() == 1? $database->getUnit(func_get_arg(0)) : $village->unitall;
 		$listArray = array();
 		for($i=1;$i<count($this->unarray);$i++) {
@@ -436,6 +430,7 @@ private function trainUnit($unit,$amt,$great=false) {
             $clay = ${'u'.$unit}['clay'] * $amt * ($great?3:1);
             $iron = ${'u'.$unit}['iron'] * $amt * ($great?3:1);
             $crop = ${'u'.$unit}['crop'] * $amt * ($great?3:1);
+			$each = ($each == 0) ? 1 : $each;
 
             if($database->modifyResource($village->wid,$wood,$clay,$iron,$crop,0)) {
                 $database->trainUnit($village->wid,$unit+($great?60:0),$amt,${'u'.$unit}['pop'],$each,time(),0);
@@ -475,7 +470,7 @@ private function trainUnit($unit,$amt,$great=false) {
 			case 13:
             case 33:
             case 43:
-			if($building->getTypeLevel(22) >= 3 && $building->getTypeLevel(11) >= 1) { return true; } else { return false; }
+			if($building->getTypeLevel(22) >= 3 && $building->getTypeLevel(12) >= 1) { return true; } else { return false; }
 			break;
 			case 14:
             case 34:

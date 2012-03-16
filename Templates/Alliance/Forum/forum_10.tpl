@@ -1,6 +1,6 @@
 <?php
 //////////////// made by TTMTT ////////////////
-
+if($session->access!=BANNED){
 $topic_id = $_GET['pod'];
 $post_id = $_GET['pod'];
 $topics = $database->ShowTopic($topic_id);
@@ -70,3 +70,7 @@ foreach($posts as $pos) {
 	</tbody></table>
 
 	<p class="btn"><input  type="image" id="fbtn_ok" value="ok" name="s1" class="dynamic_img" src="img/x.gif" alt="OK" /></form></p>
+	<?php }else{
+header("Location: banned.php");
+}
+?>

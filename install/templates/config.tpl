@@ -234,12 +234,6 @@ echo "<div class=\"headline\"><span class=\"f10 c5\">Error creating constant.php
 	  <option value="error_reporting (E_ALL ^ E_NOTICE);" selected="selected">Yes</option>
 	  <option value="error_reporting (0);">No</option>
 	</select></td></tr>
-	<td><span class="f9 c6">Show admin in stats:</span></td><td>
-				<select name="admin_rank">
-				<option value="True" selected="selected">True</option>
-				<option value="False">False</option>
-				</select>
-		</td></tr><tr></tr>
 	</table>
 	</p>
 

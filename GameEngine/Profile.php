@@ -50,6 +50,7 @@ class Profile {
 	
 	private function updateProfile($post) {
 		global $database;
+		if($session->access!=BANNED){
 		$birthday = $post['jahr'].'-'.$post['monat'].'-'.$post['tag'];
 		$database->submitProfile($database->RemoveXSS($post['uid']),$database->RemoveXSS($post['mw']),$database->RemoveXSS($post['ort']),$database->RemoveXSS($birthday),$database->RemoveXSS($post['be2']),$database->RemoveXSS($post['be1']));
 		$varray = $database->getProfileVillages($post['uid']);
@@ -57,15 +58,23 @@ class Profile {
 			$database->setVillageName($database->RemoveXSS($varray[$i]['wref']),$database->RemoveXSS($post['dname'.$i]));
 		}
 		header("Location: ?uid=".$post['uid']);
+	}else{
+	header("Location: banned.php");
+	}
 	}
 
 	private function gpack($post) {
 		global $database, $session;
+		if($session->access!=BANNED){
 		$database->gpack($database->RemoveXSS($session->uid),$database->RemoveXSS($post['custom_url']));
 		header("Location: ?uid=".$session->uid);
+	}else{
+	header("Location: banned.php");
+	}
 	}	
 	private function updateAccount($post) {
 		global $database,$session,$form;
+		if($session->access!=BANNED){
 		if($post['pw2'] == $post['pw3']) {
 			if($database->login($session->username,$post['pw1'])) {
 				$database->updateUserField($post['uid'],"password",md5($post['pw2']),1);
@@ -110,10 +119,14 @@ class Profile {
 		}
 		$_SESSION['errorarray'] = $form->getErrors();
 		header("Location: spieler.php?s=3");
+	}else{
+	header("Location: banned.php");
+	}
 	}
 	
 	private function removeSitter($get) {
 		global $database,$session;
+		if($session->access!=BANNED){
 		if($get['a'] == $session->checker) {
 			if($session->userinfo['sit'.$get['type']] == $get['id']) {
 				$database->updateUserField($session->uid,"sit".$get['type'],0,1);
@@ -121,21 +134,32 @@ class Profile {
 			$session->changeChecker();
 		}
 		header("Location: spieler.php?s=".$get['s']);
+	}else{
+	header("Location: banned.php");
+	}
 	}
 	
 	private function cancelDeleting($get) {
 		global $database;
+		if($session->access!=BANNED){
 		$database->setDeleting($get['id'],1);
 		header("Location: spieler.php?s=".$get['s']);
+	}else{
+	header("Location: banned.php");
+	}
 	}
 	
 	private function removeMeSit($get) {
 		global $database,$session;
+		if($session->access!=BANNED){
 		if($get['a'] == $session->checker) {
 			$database->removeMeSit($get['id'],$session->uid);
 			$session->changeChecker();
 		}
 		header("Location: spieler.php?s=".$get['s']);
+	}else{
+	header("Location: banned.php");
+	}
 	}
 };
 $profile = new Profile;

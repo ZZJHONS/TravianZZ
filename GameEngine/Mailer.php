@@ -11,11 +11,11 @@
 #################################################################################
 
 class Mailer {
-	
+
 	function sendActivate($email,$username,$pass,$act) {
-		
+
 		$subject = "Welcome to ".SERVER_NAME;
-		
+
 		$message = "Hello ".$username."
 
 Thank you for your registration.
@@ -31,18 +31,18 @@ Click the following link in order to activate your account:
 
 Greetings,
 TravianX";
-				
+
 		$headers = "From: Mailer@".SERVER_NAME."\n";
 		//$headers .= 'MIME-Version: 1.0' . "\r\n";
 		//$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-		
+
 		mail($email, $subject, $message, $headers);
 	}
 
 	function sendPassword($email,$uid,$username,$npw,$cpw) {
-		
+
 		$subject = "Password forgotten";
-		
+
 		$message = "Hello ".$username."
 
 You have requested a new password for Travian.
@@ -64,12 +64,12 @@ In case you did not request a new password you may ignore this email.
 
 TravianX
 ";
-				
+
 		$headers = "From: Mailer@".SERVER_NAME."\n";
-		
+
 		mail($email, $subject, $message, $headers);
 	}
-	
+
 };
 $mailer = new Mailer;
 ?>

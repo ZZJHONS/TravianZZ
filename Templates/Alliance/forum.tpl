@@ -1,6 +1,5 @@
 <?php
 //////////////// made by TTMTT ////////////////
-
 if(isset($aid)) {
 $aid = $aid;
 }
@@ -8,6 +7,7 @@ else {
 $aid = $session->alliance;
 }
 $allianceinfo = $database->getAlliance($aid);
+$opt = $database->getAlliPermissions($session->uid, $aid);
 echo "<h1>".$allianceinfo['tag']." - ".$allianceinfo['name']."</h1>";
 include("alli_menu.tpl"); 
 $ids = $_GET['s'];
@@ -132,9 +132,15 @@ if($_GET['admin']== "newforum"){
 }else{
 	if($database->CheckForum($aid)){
 		include("Forum/forum_2.tpl"); 
-	}else{
+	}else if($opt['opt5'] == 1){
+	if($session->access==BANNED){
 			echo '<p class="error">Forum is not created yet</p><p>
-					<a href="allianz.php?s=2&admin=newforum"><img id="fbtn_newforum" class="dynamic_img" src="img/x.gif" alt="New forum" /></a></p>';
+			<a href="banned.php"><img id="fbtn_newforum" class="dynamic_img" src="img/x.gif" alt="New forum" /></a></p>';
+			}else{
+			echo '<p class="error">Forum is not created yet</p><p>
+			<a href="allianz.php?s=2&admin=newforum"><img id="fbtn_newforum" class="dynamic_img" src="img/x.gif" alt="New forum" /></a></p>';
+			}}else{
+			echo '<p class="error">Forum is not created yet</p>';
+			}
 	}				
-}
 ?>

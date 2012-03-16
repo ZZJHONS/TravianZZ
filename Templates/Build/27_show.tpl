@@ -75,7 +75,7 @@
                         <tr>
                             <th colspan="3">Former owner(s)</th>
                         </tr>
-                        <tr>
+					<tr>
                             <td>Player</td>
                             <td>Village</td>
                             <td>conquered</td>
@@ -83,10 +83,10 @@
                     </thead>
                     <tbody>
             
-                    <tr>
-                        <td><span class="none">No User</span></td>
-                        <td><span class="none">[?]</span></td>
-                        <td><span class="none">Yet To Be Conquered</span></td> 
+					<tr>
+                        <td><span class="none"><a href="spieler.php?uid=<?php echo $artefact['owner'];?>"><?php echo $database->getUserField($artefact['owner'],"username",0);?></a></span></td>
+                        <td><span class="none"><a href="karte.php?d=<?php echo $artefact['vref'];?>&c=<?php echo $generator->getMapCheck($artefact['vref']);?>"><?php echo $database->getVillageField($artefact['vref'], "name");?> </a></span></td>
+                        <td><span class="none"><?php echo date("Y-m-d H:i:s",$artefact['conquered']);?></span></td> 
                         
                     </tr>
                    

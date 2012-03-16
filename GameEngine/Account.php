@@ -202,7 +202,7 @@ class Account {
 	
 	function generateBase($kid,$uid,$username) {
 		global $database,$message;
-		//$database->updateUserField($uid,"location","",1);
+		$database->updateUserField($uid,"location","",1);
 		if($kid == 0) {
 			$kid = rand(1,4);
 		}

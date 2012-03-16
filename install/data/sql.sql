@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%a2b` (
   `u11` int(11) unsigned NOT NULL,
   `type` smallint(1) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `%PREFIX%a2b`
@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%abdata` (
   `b7` tinyint(2) unsigned NOT NULL DEFAULT '0',
   `b8` tinyint(2) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`vref`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `%PREFIX%abdata`
@@ -111,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%activate` (
   `location` text NOT NULL,
   `act2` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `%PREFIX%activate`
@@ -128,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%active` (
   `username` varchar(15) NOT NULL,
   `timestamp` int(11) unsigned NOT NULL,
   PRIMARY KEY (`username`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `%PREFIX%active`
@@ -147,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%admin_log` (
   `log` text NOT NULL,
   `time` int(25) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=80 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=80 ;
 
 --
 -- Dumping data for table `%PREFIX%admin_log`
@@ -168,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%allimedal` (
   `points` bigint(255) NOT NULL,
   `img` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -188,7 +188,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%artefacts` (
   `effect` varchar(45) NOT NULL,
   `img` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Table structure for table `s1_artefacts`
@@ -219,7 +219,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%alidata` (
   `clp` bigint(255) NOT NULL DEFAULT '0',
   `oldrank` bigint(255) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `%PREFIX%alidata`
@@ -240,7 +240,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%ali_invite` (
   `timestamp` int(11) NOT NULL,
   `accept` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `%PREFIX%ali_invite`
@@ -259,7 +259,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%ali_log` (
   `comment` text NOT NULL,
   `date` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `%PREFIX%ali_log`
@@ -286,7 +286,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%ali_permission` (
   `opt7` int(1) unsigned NOT NULL DEFAULT '0',
   `opt8` int(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `%PREFIX%ali_permission`
@@ -326,7 +326,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%attacks` (
   `b7` tinyint(1) unsigned NOT NULL, 
   `b8` tinyint(1) unsigned NOT NULL, 
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `%PREFIX%attacks`
@@ -349,7 +349,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%banlist` (
   `admin` int(11) NOT NULL,
   `active` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `%PREFIX%banlist`
@@ -370,7 +370,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%bdata` (
   `loopcon` tinyint(1) unsigned NOT NULL,
   `timestamp` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `%PREFIX%bdata`
@@ -388,7 +388,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%build_log` (
   `wid` int(10) unsigned NOT NULL,
   `log` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `%PREFIX%build_log`
@@ -409,7 +409,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%chat` (
   `date` varchar(255) NOT NULL,
   `msg` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `%prefix%chat`
@@ -426,7 +426,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%deleting` (
   `uid` int(10) unsigned NOT NULL,
   `timestamp` int(10) unsigned NOT NULL,
   PRIMARY KEY (`uid`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `%prefix%deleting`
@@ -445,7 +445,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%demolition` (
   `lvl` int(10) unsigned NOT NULL DEFAULT '0',
   `timetofinish` int(11) NOT NULL,
   PRIMARY KEY (`vref`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `%prefix%demolition`
@@ -463,7 +463,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%destroy_log` (
   `wid` int(10) unsigned NOT NULL,
   `log` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `%prefix%destroy_log`
@@ -483,7 +483,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%diplomacy` (
   `type` tinyint(1) unsigned NOT NULL,
   `accepted` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 --
 -- Dumping data for table `%prefix%diplomacy`
 --
@@ -551,7 +551,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%enforcement` (
   `from` int(10) unsigned NOT NULL DEFAULT '0',
   `vref` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `%prefix%enforcement`
@@ -650,7 +650,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%fdata` (
   `f99t` tinyint(2) unsigned NOT NULL DEFAULT '0',
   `wwname` varchar(25) NOT NULL DEFAULT 'World Wonder',
   PRIMARY KEY (`vref`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 ROW_FORMAT=FIXED;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=FIXED;
 
 --
 -- Dumping data for table `%prefix%fdata`
@@ -671,7 +671,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%forum_cat` (
   `forum_des` text NOT NULL,
   `forum_area` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `%prefix%forum_cat`
@@ -689,7 +689,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%forum_edit` (
   `alliance` varchar(255) NOT NULL,
   `result` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `%prefix%forum_edit`
@@ -709,7 +709,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%forum_post` (
   `owner` varchar(255) NOT NULL,
   `date` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `%prefix%forum_post`
@@ -735,7 +735,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%forum_topic` (
   `close` varchar(255) NOT NULL,
   `stick` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `%prefix%forum_topic`
@@ -753,7 +753,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%gold_fin_log` (
   `wid` int(10) unsigned NOT NULL,
   `log` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `%prefix%gold_fin_log`
@@ -785,7 +785,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%hero` (
   `autoregen` int(2) NOT NULL,
   `trainingtime` mediumint(3) unsigned NOT NULL,
   PRIMARY KEY (`heroid`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `%prefix%hero`
@@ -804,7 +804,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%illegal_log` (
   `user` int(10) unsigned NOT NULL,
   `log` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `%prefix%illegal_log`
@@ -822,7 +822,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%login_log` (
   `uid` int(10) unsigned NOT NULL,
   `ip` varchar(15) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `%prefix%login_log`
@@ -847,7 +847,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%market` (
   `alliance` int(11) unsigned NOT NULL,
   `merchant` tinyint(2) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `%prefix%market`
@@ -865,7 +865,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%market_log` (
   `wid` int(10) unsigned NOT NULL,
   `log` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `%prefix%market_log`
@@ -889,7 +889,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%mdata` (
   `send` tinyint(1) unsigned NOT NULL,
   `time` int(11) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `%prefix%mdata`
@@ -911,7 +911,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%medal` (
   `points` varchar(15) NOT NULL,
   `img` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `%prefix%medal`
@@ -933,7 +933,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%movement` (
   `endtime` int(11) unsigned NOT NULL DEFAULT '0',
   `proc` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`moveid`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `%prefix%movement`
@@ -956,7 +956,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%ndata` (
   `viewed` tinyint(1) unsigned NOT NULL,
   `archive` tinyint(1) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `%prefix%ndata`
@@ -984,7 +984,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%odata` (
   `owner` int(10) unsigned NOT NULL DEFAULT '2',
   `name` varchar(32) NOT NULL DEFAULT 'Unoccupied Oasis',
   PRIMARY KEY (`wref`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `%prefix%odata`
@@ -1001,7 +1001,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%online` (
   `name` varchar(32) NOT NULL,
   `time` varchar(32) NOT NULL,
   UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `%prefix%online`
@@ -1020,7 +1020,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%research` (
   `tech` varchar(3) NOT NULL,
   `timestamp` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `%prefix%research`
@@ -1041,7 +1041,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%send` (
   `crop` int(11) unsigned NOT NULL,
   `merchant` tinyint(2) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `%prefix%send`
@@ -1097,7 +1097,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%tdata` (
   `t48` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `t49` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`vref`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `%prefix%tdata`
@@ -1115,7 +1115,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%tech_log` (
   `wid` int(10) unsigned NOT NULL,
   `log` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `%prefix%tech_log`
@@ -1138,7 +1138,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%training` (
   `eachtime` int(10) unsigned NOT NULL,
   `commence` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `%prefix%training`
@@ -1205,7 +1205,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%units` (
   `u50` int(11) unsigned NOT NULL DEFAULT '0',
   `hero` int(11) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`vref`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `%prefix%units`
@@ -1257,7 +1257,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%users` (
   `clp` bigint(255) NOT NULL DEFAULT '0',
   `oldrank` bigint(255) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `%prefix%users`
@@ -1298,7 +1298,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%vdata` (
   `created` int(11) NOT NULL,
   PRIMARY KEY (`wref`),
   KEY `wref` (`wref`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `%prefix%vdata`
@@ -1320,7 +1320,7 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%wdata` (
   `occupied` tinyint(1) NOT NULL,
   `image` varchar(3) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `%prefix%wdata`
@@ -1338,4 +1338,4 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%password` (
   `used` tinyint(1) NOT NULL DEFAULT '0',
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`uid`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ;

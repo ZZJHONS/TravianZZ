@@ -1,13 +1,8 @@
 <?php include("templates/script.tpl"); 
                
-	if(!isset($_GET['s'])) {
-		$_GET['s']=0;
-	}
-
-	if(file_exists("../GameEngine/config.php")){
-	$_GET['s']=6;
-	}
- 
+if(!isset($_GET['s'])) {
+	$_GET['s']=0;
+}
 ?>
  
  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"

@@ -93,12 +93,14 @@ switch($market->onsale[$i]['gtype']) {
     if(($market->onsale[$i]['wtype'] == 1 && $village->awood <= $market->onsale[$i]['wamt']) ||($market->onsale[$i]['wtype'] == 2 && $village->aclay <= $market->onsale[$i]['wamt']) ||($market->onsale[$i]['wtype'] == 3 && $village->airon <= $market->onsale[$i]['wamt']) ||($market->onsale[$i]['wtype'] == 4 && $village->acrop <= $market->onsale[$i]['wamt'])) {
     echo "<td class=\"act none\">Not Enough Resource</td></tr>";
     }
-    else if($market->merchantAvail() == 0 && $reqMerc <= $market->merchantAvail()) {
+    else if($reqMerc > $market->merchantAvail()) {
     echo "<td class=\"act none\">Not Enough Merchant</td></tr>";
     }
-    else {
+    else if($session->access != BANNED){
     echo "<td class=\"act\"><a href=\"build.php?id=$id&t=1&a=".$session->mchecker."&g=".$market->onsale[$i]['id']."\">Accept offer</a></td>";
-    }
+    }else{ 
+	echo "<td class=\"act\"><a href=\"banned.php\">Accept offer</a></td>";
+	}
     echo"</tr>";
     }
 }

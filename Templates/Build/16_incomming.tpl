@@ -25,9 +25,6 @@ if ($units[$y]['sort_type']==3){
                   for($i=$start;$i<=($end);$i++) {
                   	echo "<td><img src=\"img/x.gif\" class=\"unit u$i\" title=\"".$technology->getUnitName($i)."\" alt=\"".$technology->getUnitName($i)."\" /></td>";	
                   }
-                  if($units[$y]['t11'] != 0) {
-                   echo "<td><img src=\"img/x.gif\" class=\"unit uhero\" title=\"Hero\" alt=\"Hero\" /></td><td class=\"none\">?</td>";    
-                  }
                   echo "</tr><tr><th>Troops</th>";
                   for($i=$start;$i<=($end);$i++) {
                  		echo "<td class=\"none\">?</td>";

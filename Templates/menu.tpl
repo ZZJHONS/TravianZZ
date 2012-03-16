@@ -44,10 +44,10 @@ div.c1 {text-align: center}
                     echo "<a href=\"massmessage.php\">Mass Message</a>";
                     echo "<a href=\"medals.php\">Update Top 10</a>";
                     echo "<a href=\"sysmsg.php\">System message</a>";
+					echo "<a href=\"create_account.php\">Create Natars</a>";
                     } ?> <a href="logout.php"><?php echo LOGOUT; ?></a></p>
 
-        <p><a href="#">Forum</a></p>
-
+		<a href="rules.php"><b>Game Rules</b></a> 
         <p><a href="plus.php?id=3">Travian <b><span class="plus_g">P</span><span class="plus_o">l</span><span class="plus_g">u</span><span class="plus_o">s</span></b></a>
                     <a href="spieler.php?uid=0"><b>Support</b></a> 
         <br></p>

@@ -1,11 +1,8 @@
 <div id="content"  class="map">
 <?php 
 $basearray = $database->getMInfo($_GET['d']);
-if($basearray['oasistype'] > 0) {
-	$basearray = $database->getOMInfo($_GET['d']);
-}
 ?>
-<h1><?php echo !$basearray['occupied']? $basearray['fieldtype']? "Abandoned valley" : $basearray['conqured'] ? $basearray['name'] : "Unoccupied oasis" : $basearray['name']; echo " (".$basearray['x']."|".$basearray['y'].")"; ?></h1>
+<h1><?php echo !$basearray['occupied']? $basearray['fieldtype']? "Abandoned valley" : "Unoccupied oasis" : $basearray['name']; echo " (".$basearray['x']."|".$basearray['y'].")"; ?></h1>
 <?php if($basearray['occupied'] && $basearray['capital']) { echo "<div id=\"dmain\">(capital)</div>"; } ?>
 
 <img src="img/x.gif" id="detailed_map" class="<?php echo ($basearray['fieldtype'] == 0)? 'w'.$basearray['oasistype'] : 'f'.$basearray['fieldtype'] ?>" alt="<?php 
@@ -83,7 +80,7 @@ echo $tt."\"";
 $landd = explode("-",$tt);?> />
 
 <div id="map_details">
-<?php if($basearray['fieldtype'] == 0 && !$basearray['conqured']) {
+<?php if($basearray['fieldtype'] == 0) {
 ?>
 <table cellpadding="1" cellspacing="1" id="troop_info" class="tableNone">
             <thead><tr>
@@ -116,7 +113,7 @@ $landd = explode("-",$tt);?> />
 
 <?php
 }
-else if (!$basearray['occupied'] && !$basearray['conqured']) {
+else if (!$basearray['occupied']) {
 ?>
 	<table cellpadding="1" cellspacing="1" id="distribution" class="tableNone">
 
@@ -151,44 +148,6 @@ else if (!$basearray['occupied'] && !$basearray['conqured']) {
 	</table>
     <?php
     }
-    else if ($basearray['conqured']) {
-    ?>
-    <table cellpadding="1" cellspacing="1" id="village_info" class="tableNone">
-        <?php 
-        $uinfo = $database->getUserArray($basearray['owner'],1); ?>
-		<tbody><tr>
-			<th>Tribe</th>
-			<td><?php switch($uinfo['tribe']) { case 1: echo TRIBE1; break; case 2: echo TRIBE2; break; case 3: echo TRIBE3; break; case 4: echo TRIBE4; break; case 5: echo TRIBE5; break;} ?></td>
-		</tr>
-		<tr>
-			<th>Alliance</th>
-			<?php if($uinfo['alliance'] == 0){
-			echo '<td>-</td>';
-			} else echo '
-			<td><a href="allianz.php?aid='.$uinfo['alliance'].' ">'.$database->getUserAlliance($basearray['owner']).'</a></td>'; ?>
-		</tr>
-		<tr>
-			<th>Owner</th>
-			<td><a href="spieler.php?uid=<?php echo $basearray['owner']; ?>"><?php echo $database->getUserField($basearray['owner'],'username',0); ?></a></td>
-		</tr>
-		<tr>
-			<th>Village</th>
-			<td><a href="karte.php?d=<?php echo $basearray['conqured']; ?>&amp;c=<?php echo $generator->getMapCheck($basearray['conqured']); ?>"><?php echo $database->getVillageField($basearray['conqured'],"name"); ?></a></td>
-		</tr></tbody>
-	</table>
- 
-	<table cellpadding="1" cellspacing="1" id="troop_info" class="tableNone rep">
-		<thead><tr>
-			<th>Reports:</th>
-		</tr></thead>
-		<tbody>
-							<tr>
-					<td>There is no
-<br>information available.</td>
-				</tr>
-					</tbody>
-	</table>
-    <?php } 
     else {
     ?>
     <table cellpadding="1" cellspacing="1" id="village_info" class="tableNone">
@@ -199,7 +158,7 @@ else if (!$basearray['occupied'] && !$basearray['conqured']) {
         $uinfo = $database->getUserArray($basearray['owner'],1); ?>
 		<tbody><tr>
 			<th>Tribe</th>
-			<td><?php switch($uinfo['tribe']) { case 1: echo TRIBE1; break; case 2: echo TRIBE2; break; case 3: echo TRIBE3; break; case 4: echo TRIBE4; break; case 5: echo TRIBE5; break;} ?></td>
+			<td><?php switch($uinfo['tribe']) { case 1: echo Romans; break; case 2: echo Teutons; break; case 3: echo Gauls; break; case 4: echo Nature; break; case 5: echo Natars; break;} ?></td>
 		</tr>
 		<tr>
 			<th>Alliance</th>
@@ -246,7 +205,7 @@ else if (!$basearray['occupied'] && !$basearray['conqured']) {
       $mode = CP; 
       $total = count($database->getProfileVillages($session->uid)); 
       $need_cps = ${'cp'.$mode}[$total+1]; 
-      $cps = $session->cp;      
+      $cps = floor($database->getUserField($session->uid, 'cp',0));      
       
       if($cps >= $need_cps) {
         $enough_cp = true;
@@ -272,7 +231,7 @@ else if (!$basearray['occupied'] && !$basearray['conqured']) {
 		"&raquo; Raid $otext oasis. (build a rally point)" : 
 		
 		
-		"<a href=\"a2b.php?z=".$_GET['d']."&o\">&raquo;&nbsp;".($basearray['conqured'] ? "Send troops" : "Raid unoccupied oasis")."</a>" :
+		"<a href=\"a2b.php?z=".$_GET['d']."&o\">&raquo; Raid $otext oasis.</a>" :
 		"$test"
 			?>
 		</tr>
@@ -286,7 +245,11 @@ else if (!$basearray['occupied'] && !$basearray['conqured']) {
           $query2 = mysql_query('SELECT * FROM `' . TB_PREFIX . 'users` WHERE `id` = ' . $data1['owner']);
           $data2 = mysql_fetch_assoc($query2);
            if($data2['access']=='0') {
-            echo "&raquo; Send troops. (Player is banned)";
+           echo "&raquo; Send troops. (Player is banned)";
+		   }  else if($data2['access']=='8') {
+            echo "&raquo; Send Troops. (Moderator)";
+           }  else if($data2['access']=='9') {
+            echo "&raquo; Send Troops. (Administrator)";
           } else if($data2['protect'] < time()) {
             echo $village->resarray['f39']? "<a href=\"a2b.php?z=".$_GET['d']."\">&raquo; Send troops." : "&raquo; Send troops. (build a rally point)"; 
           } else {

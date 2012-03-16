@@ -40,12 +40,12 @@
         	$name = "Haeduan";
         }
         
-        $wood = (${'u'.$hero_info['unit']}['wood'] + (($hero_info['level'] * 10) * ${'u'.$hero_info['unit']}['wood']));
-        $clay = (${'u'.$hero_info['unit']}['clay'] + (($hero_info['level'] * 10) * ${'u'.$hero_info['unit']}['clay']));
-        $iron = (${'u'.$hero_info['unit']}['iron'] + (($hero_info['level'] * 10) * ${'u'.$hero_info['unit']}['iron']));
-        $crop = (${'u'.$hero_info['unit']}['crop'] + (($hero_info['level'] * 10) * ${'u'.$hero_info['unit']}['crop']));
-        $training_time = $generator->getTimeFormat(round((${'u'.$hero_info['unit']}['time'] * ($hero_info['level']*2)) / SPEED));
-        $training_time2 = time() + (${'u'.$hero_info['unit']}['time'] * ($hero_info['level']*2)) / SPEED;
+        $wood = (${'h'.$hero_info['unit'].'_full'}[$hero_info['level']]['wood']);
+        $clay = (${'h'.$hero_info['unit'].'_full'}[$hero_info['level']]['clay']);
+        $iron = (${'h'.$hero_info['unit'].'_full'}[$hero_info['level']]['iron']);
+        $crop = (${'h'.$hero_info['unit'].'_full'}[$hero_info['level']]['crop']);
+        $training_time = $generator->getTimeFormat(round((${'h'.$hero_info['unit'].'_full'}[$hero_info['level']]['time']) / SPEED));
+        $training_time2 = time() + (${'h'.$hero_info['unit'].'_full'}[$hero_info['level']]['time']) / SPEED;
 ?>
 
     <table cellpadding="1" cellspacing="1" class="build_details">
@@ -136,5 +136,5 @@
  			       }
         		}
         	} 
-            
+            include ("37_train.tpl");
     ?>

@@ -232,9 +232,7 @@
        	*****************************************/
        	private function changeAliName($get) {
        		global $form, $database, $session;
-       		if(!$database->isAllianceOwner($session->uid)) {
-       			$form->addError("owner", NO_OWNER);
-       		}
+			
        		if(!isset($get['ally1']) || $get['ally1'] == "") {
        			$form->addError("ally1", ATAG_EMPTY);
        		}

@@ -37,7 +37,10 @@ if($session->userinfo['gold'] >= 3 && $building->getTypeLevel(17) >= 1) {
     	echo "<span class=\"none\">Enough resources ".$neededtime[0]." at  ".$neededtime[1]."</span>";
     }
     else if($bindicate == 8) {
-    	if($id <= 18) {
+		if($session->access==BANNED){
+    	echo "<a class=\"build\" href=\"banned.php\">Upgrade to level ";
+		}
+		else if($id <= 18) {
     	echo "<a class=\"build\" href=\"dorf1.php?a=$id&c=$session->checker\">Upgrade to level ";
         }
         else {
@@ -47,7 +50,10 @@ if($session->userinfo['gold'] >= 3 && $building->getTypeLevel(17) >= 1) {
 		echo ".</a>";
     }
     else if($bindicate == 9) {
-    	if($id <= 18) {
+		if($session->access==BANNED){
+    	echo "<a class=\"build\" href=\"banned.php\">Upgrade to level ";
+		}
+    	else if($id <= 18) {
     	echo "<a class=\"build\" href=\"dorf1.php?a=$id&c=$session->checker\">Upgrade to level ";
         }
         else {

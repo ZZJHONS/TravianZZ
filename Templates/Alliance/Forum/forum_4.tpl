@@ -1,6 +1,6 @@
 <?php
 //////////////// made by TTMTT ////////////////
-
+if($session->access!=BANNED){
 $cat_id = $_GET['fid'];
 $CatName = $database->ForumCatName($cat_id);
 $ChckTopic = $database->CheckCatTopic($cat_id);
@@ -101,3 +101,7 @@ echo '<tr>
 	}
 ?>
 	</p>
+<?php }else{
+header("Location: banned.php");
+}
+?>

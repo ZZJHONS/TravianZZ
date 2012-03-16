@@ -49,8 +49,13 @@ if(count($market->onmarket) > 0) {
 	echo "<table id=\"sell_overview\" cellpadding=\"1\" cellspacing=\"1\"><thead><tr><th colspan=\"6\">Own offers</th></tr><tr><td>&nbsp;</td><td>Offer</td>
 <td>Search</td><td>Merchants</td><td>Alliance</td><td>Duration</td></tr></thead><tbody>";
 	foreach($market->onmarket as $offer) {
+		if($session->access != BANNED){
         echo "<tr><td class=\"abo\"><a href=\"build.php?id=$id&t=2&a=5&del=".$offer['id']."\"><img class=\"del\"src=\"img/x.gif\" alt=\"Delete\" title=\"Delete\" /></a></td>";
+		echo "<td class=\"val\">";
+		}else{
+        echo "<tr><td class=\"abo\"><a href=\"banned.php\"><img class=\"del\"src=\"img/x.gif\" alt=\"Delete\" title=\"Delete\" /></a></td>";
         echo "<td class=\"val\">";
+		}
         switch($offer['gtype']) {
         case 1: echo "<img src=\"img/x.gif\" class=\"r1\" alt=\"Wood\" title=\"Wood\" />"; break;
         case 2: echo "<img src=\"img/x.gif\" class=\"r2\" alt=\"Clay\" title=\"Clay\" />"; break;

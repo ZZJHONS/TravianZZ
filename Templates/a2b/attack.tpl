@@ -66,7 +66,7 @@ $end = ($tribe*10);
 ?>
 
 <h1><?php echo $actionType." to ".$process[1]; ?></h1>            
-
+<?php if($session->access != BANNED){ ?>
 <form method="post" action="a2b.php">
 
             <table id="short_info" cellpadding="1" cellspacing="1">
@@ -409,5 +409,7 @@ class="dynamic_img " src="img/x.gif" alt="OK" type="image" onclick="if (this.dis
 
 <?php } ?>
 </form>
-
+<?php
+} 
+else{header("Location: banned.php");}?>
 </div>

@@ -63,7 +63,7 @@
         $wid = mysql_fetch_assoc(mysql_query("SELECT * FROM " . TB_PREFIX . "vdata WHERE owner = $uid"));
         $q = "UPDATE " . TB_PREFIX . "vdata SET pop = 834 WHERE owner = $uid";
         mysql_query($q) or die(mysql_error());
-        $q2 = "UPDATE " . TB_PREFIX . "users SET access = 0 WHERE id = $uid";
+        $q2 = "UPDATE " . TB_PREFIX . "users SET access = 2 WHERE id = $uid";
         mysql_query($q2) or die(mysql_error());
         if(SPEED > 3) {
         	$speed = 5;
@@ -369,3 +369,9 @@
         for($i > 1; $i < 1; $i++) {
         	Artefact($uid, 8, 3, 'Artefact of the unique fool', '' . $vname . '', '' . $desc . '', '' . $effect . '', 'type8.gif');
         }
+        
+        
+/**
+ * Done?
+ */
+        echo "Done"; 

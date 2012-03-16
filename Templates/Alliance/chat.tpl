@@ -1,6 +1,6 @@
 <?php
 ////////////// made by TTMTT //////////////
-
+ob_start();
 if(isset($aid)) {
 $aid = $aid;
 }
@@ -25,7 +25,9 @@ x_add_data(name +"|"+msg,add_cb); }
 
 </script>
 
-
+<?php
+if($session->access!=BANNED){
+?>
 <body onload="start_it()">
 <form name="form1" onSubmit="send_data()">
 	<div id="TitleName" class="chatHeader">Ally-Chat</div>
@@ -50,3 +52,8 @@ x_add_data(name +"|"+msg,add_cb); }
 </body> 
 			<div id="rooms">
 			</div>
+<?php
+}else{
+	header("Location: banned.php");
+}
+?>
